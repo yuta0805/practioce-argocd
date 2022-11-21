@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: argocd
+spec:
+  selector:
+    matchLabels:
+      app: argocd
+  template:
+    metadata:
+      labels:
+        app: argocd
+    spec:
+      containers:
+      - name: argocd
+        image: nginx:1.14
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80

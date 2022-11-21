@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  namespace: argocd
+  name: sample-app
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+
+spec:
+  project: test
+  source:
+    repoURL: https://github.com/yuta0805/
+    targetRevision: v2.0-rc
+    path: 
+  # Helmリポジトリを指定します。Gitリポジトリも指定可能です。
+# Gitリポジトリの指定方法
+#   source:
+#      repoURL: https://github.com/argoproj/argocd-example-apps.git
+#      ブランチ、タグなどが指定可能です
+#      targetRevision: HEAD
+#      Chartのpathを指定します。
+#      path: guestbook
+
+  ## helm chartの指定の仕方
+  # source:
+  #   chart: aws-alb-ingress-controller
+  #   repoURL: http://storage.googleapis.com/kubernetes-charts-incubator
+  #   targetRevision: 0.1.10
+  #   helm:
+  #     parameters:
+  #     - name: clusterName
+  #       value: hogehoge
