@@ -1,0 +1,19 @@
+apiVersion:  argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  namespace: argocd
+  name: test
+
+spec:
+# どのAppProjectに所属させるかを指定します。
+# AppProjectはArgoCDのCRDで、ユーザの権限を制限する場合などに利用出来ます。
+# ここでは、最初から存在するdefaultを利用します。
+  #project: default
+
+  description: test project
+  # 今回は特にレポジトリを指定してないのでワイルドカード
+  sourceRepos:
+    - "*"
+  destinations:
+    - namespace: default
+      server: https://kubernetes.default.svc
